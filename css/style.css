@@ -1,0 +1,14 @@
+.frame {
+    position: absolute;
+    left: 50%;
+    margin-left: -200;
+    margin-top: 10px;
+    width: 400px;
+}
+.prompt {
+    width: 400px;
+    height: 400px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+}
