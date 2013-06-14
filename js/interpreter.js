@@ -1,7 +1,7 @@
 /**
- * very simple interpreter
+ * commands
  */
-function Interpreter(shell) {
+function Commands(shell) {
     this.shell = shell;
     /**
      * define callable functions with or without return values
@@ -55,18 +55,22 @@ function Interpreter(shell) {
         this.shell.focus();
         cb(null);
     };
+}
+/**
+ * very simple interpreter
+ */
+function Interpreter(shell) {
+    this.shell = shell;
+    this.commands = new Commands(shell);
     /**
-     * display defined functions
-     *
-     * TODO:
-     * register functions from other objects and display them
+     * display defined commands
      */
     this.help = function help(cb) {
         var lines = this.shell.value;
-        for(i in this) {
-            if (typeof this[i] === 'function' && this[i].name !== 'handleCommand' && this[i].name !== 'help') {
-                lines += "\n" + this[i].name;                
-            }
+        for(i in this.commands) {
+            if (typeof this.commands[i] === 'function') {
+                lines += "\n" + this.commands[i].name;    
+            }             
         }                
         this.shell.value = lines;
         cb();
@@ -75,9 +79,6 @@ function Interpreter(shell) {
      * seperate command from args
      * handle specific command 
      * - call when present and is from type function
-     *
-     * TODO:
-     * deligate to other objects and act as a facade for the console
      */
     this.handleCommand = function handleCommand(command, cb) {
         var commandArr = command.split(' ');
@@ -86,15 +87,23 @@ function Interpreter(shell) {
         if (commandArr.length > 1) {
             args = commandArr.slice(1); 
         }
-        if (typeof this[command] === 'function' && command !== 'handleCommand') {
-            this[command](function (response) {
+        
+        if (command === 'help') {
+            this.help(function (response) {
                 if (response) {
                     this.shell.value += "\n" + response;
                 }
                 cb();                    
             }, args);
+        } else if (typeof this.commands[command] === 'function') {
+            this.commands[command](function (response) {
+                if (response) {
+                    this.shell.value += "\n" + response;
+                }
+                cb();                    
+            }, args);    
         } else {
-            this.shell.value += "\n'" + command + "' not found, type help to see commands";
+            this.shell.value += "\n'" + command + "' not found, type help to list commands";
             cb();
         }
     };
@@ -105,7 +114,7 @@ function Interpreter(shell) {
 function doCall(arg) {
     var callback = sinon.stub();
     callback.returns(5);
-    callback.withArgs(1).returns(10);
+    callback.withArgs('1').returns(10);
     callback.withArgs('install').returns('start to install...finish');
     return callback(arg);
 }
