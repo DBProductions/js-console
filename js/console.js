@@ -2,7 +2,8 @@ var shell = document.querySelector('#shell');
 var lastCommands = [];
 var commandCount = 0;
 var inputPossible = true;
-var interpreter = new Interpreter(shell);
+var commands = new Commands(shell);
+var interpreter = new Interpreter(shell, commands);
 /**
  * init shell
  */
@@ -14,6 +15,8 @@ window.onload = function() {
 };
 /**
  * dirty hack to scroll textarea down all the time
+ *
+ * TODO: find a better solution
  */ 
 setInterval(function() {
     shell.scrollTop = shell.scrollHeight;
