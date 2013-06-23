@@ -1,7 +1,19 @@
 /**
+ * do fake call with sinon
+ */
+function doCall(arg) {
+    "use strict";
+    var callback = sinon.stub();
+    callback.returns(5);
+    callback.withArgs('1').returns(10);
+    callback.withArgs('install').returns('start to install...finish');
+    return callback(arg);
+}
+/**
  * commands
  */
 function Commands(shell) {
+    "use strict";
     this.shell = shell;
     /**
      * define callable functions with or without return values
@@ -55,14 +67,4 @@ function Commands(shell) {
         this.shell.focus();
         cb(null);
     };
-}
-/**
- * do fake call with sinon
- */
-function doCall(arg) {
-    var callback = sinon.stub();
-    callback.returns(5);
-    callback.withArgs('1').returns(10);
-    callback.withArgs('install').returns('start to install...finish');
-    return callback(arg);
 }

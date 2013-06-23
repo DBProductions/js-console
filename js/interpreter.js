@@ -2,13 +2,14 @@
  * very simple interpreter
  */
 function Interpreter(shell, commands) {
+    "use strict";
     this.shell = shell;
     this.commands = commands;
     /**
      * display defined commands
      */
     this.help = function help(cb) {
-        var lines = this.shell.value;
+        var i, lines = this.shell.value;
         for(i in this.commands) {
             if (typeof this.commands[i] === 'function') {
                 lines += "\n" + this.commands[i].name;    
@@ -24,7 +25,7 @@ function Interpreter(shell, commands) {
      */
     this.handleCommand = function handleCommand(command, cb) {
         var commandArr = command.split(' ');
-        var command = commandArr[0];
+        command = commandArr[0];
         var args = null;
         if (commandArr.length > 1) {
             args = commandArr.slice(1); 

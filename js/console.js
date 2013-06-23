@@ -8,6 +8,7 @@ var interpreter = new Interpreter(shell, commands);
  * init shell
  */
 window.onload = function() {
+    "use strict";
     shell.value = "";
     shell.value = ">";
     shell.selectionStart = 1;
@@ -19,20 +20,22 @@ window.onload = function() {
  * TODO: find a better solution
  */ 
 setInterval(function() {
+    "use strict";
     shell.scrollTop = shell.scrollHeight;
 }, 100);
 /**
  * helper functions
  */
 function insertAtCursor(myField, myValue) {
+    "use strict";
     // IE support
     if (document.selection) {
         myField.focus();
-        sel = document.selection.createRange();
+        var sel = document.selection.createRange();
         sel.text = myValue;
     }
     // MOZILLA and others
-    else if (myField.selectionStart || myField.selectionStart == '0') {
+    else if (myField.selectionStart || myField.selectionStart === '0') {
         var startPos = myField.selectionStart;
         var endPos = myField.selectionEnd;
         myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos, myField.value.length);
@@ -48,43 +51,49 @@ function insertAtCursor(myField, myValue) {
  * enter - get command string, push it in lastCommands and set commandCount, pass command to interpreter
  */
 shell.addEventListener('keydown', function(e) {
+    "use strict";
     if (!inputPossible) {
         e.preventDefault();
         return false;
     }
+    var lines;
     /** 
      * left key
      */
     if (e.keyCode === 37) {
         var completeLength = shell.value.length;
         var currentPos = shell.selectionStart;
-        var lines = shell.value.split("\n");
+        lines = shell.value.split("\n");
         if (lines[lines.length-1] === '>') {
             e.preventDefault();
             return false;
         } else if((lines[lines.length-1].length - (completeLength-currentPos)) === 1) {
             e.preventDefault();
             return false;
-        }            	
+        }
     /**
      * up key
      */
     } else if (e.keyCode === 38) {
         e.preventDefault(); 
         if (lastCommands[commandCount]) {
-            var lines = shell.value.split("\n");
+            lines = shell.value.split("\n");
             lines[lines.length-1] = '>' + lastCommands[commandCount];
             shell.value = lines.join("\n");
         }                
-        if (commandCount > 0) commandCount--;
+        if (commandCount > 0) {
+            commandCount--;
+        }
         return false;
     /**
      * down key
      */
     } else if (e.keyCode === 40) {
         e.preventDefault();
-        if (commandCount < lastCommands.length) commandCount++;
-        var lines = shell.value.split("\n");
+        if (commandCount < lastCommands.length) {
+            commandCount++;
+        }
+        lines = shell.value.split("\n");
         if (lastCommands[commandCount]) {
             lines[lines.length-1] = '>' + lastCommands[commandCount];	
         } else {
@@ -96,7 +105,7 @@ shell.addEventListener('keydown', function(e) {
      * enter key
      */
     } else if (e.keyCode === 13) {
-        var lines = shell.value.split("\n");
+        lines = shell.value.split("\n");
         var commandStr = lines[lines.length-1].slice(1);                
         if (lines[lines.length-1] !== '' && commandStr !== '') {
             lastCommands.push(commandStr);
@@ -119,6 +128,7 @@ shell.addEventListener('keydown', function(e) {
  * back - insert '>' when deleted
  */
 shell.addEventListener('keyup', function(e) {
+    "use strict";
     if (!inputPossible) {
         e.preventDefault();
         return false;
