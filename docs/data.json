@@ -1,0 +1,321 @@
+{
+    "project": {
+        "name": "js-console",
+        "description": "Use a HTML textarea tag to act as a console with a simple interpreter.",
+        "version": "0.1.0"
+    },
+    "files": {
+        "js/commands.js": {
+            "name": "js/commands.js",
+            "modules": {},
+            "classes": {
+                "Commands": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js/console.js": {
+            "name": "js/console.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "js/interpreter.js": {
+            "name": "js/interpreter.js",
+            "modules": {},
+            "classes": {
+                "Interpreter": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Commands": {
+            "name": "Commands",
+            "shortname": "Commands",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js/commands.js",
+            "line": 12,
+            "description": "This is the description for the commands.\nCommands are to write for your application to fit your needs.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "shell",
+                    "description": "the textarea",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Interpreter": {
+            "name": "Interpreter",
+            "shortname": "Interpreter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js/interpreter.js",
+            "line": 1,
+            "description": "This is the description for the interpreter.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "shell",
+                    "description": "the textarea",
+                    "type": "Object"
+                },
+                {
+                    "name": "commands",
+                    "description": "Commands object",
+                    "type": "Object"
+                }
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "js/commands.js",
+            "line": 1,
+            "description": "do fake call with sinon",
+            "class": "Commands"
+        },
+        {
+            "file": "js/commands.js",
+            "line": 23,
+            "description": "The method simulate rocks",
+            "itemtype": "method",
+            "name": "rocks",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "Callback funtion",
+                    "type": "Function"
+                }
+            ],
+            "class": "Commands"
+        },
+        {
+            "file": "js/commands.js",
+            "line": 32,
+            "description": "The method simulate an make",
+            "itemtype": "method",
+            "name": "make",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "Callback funtion",
+                    "type": "Function"
+                },
+                {
+                    "name": "args",
+                    "description": "Arguments",
+                    "type": "Array"
+                }
+            ],
+            "class": "Commands"
+        },
+        {
+            "file": "js/commands.js",
+            "line": 57,
+            "description": "The method simulate an timer",
+            "itemtype": "method",
+            "name": "timer",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "Callback funtion",
+                    "type": "Function"
+                }
+            ],
+            "class": "Commands"
+        },
+        {
+            "file": "js/commands.js",
+            "line": 76,
+            "description": "The method simulate an installation",
+            "itemtype": "method",
+            "name": "install",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "Callback funtion",
+                    "type": "Function"
+                }
+            ],
+            "class": "Commands"
+        },
+        {
+            "file": "js/commands.js",
+            "line": 90,
+            "description": "The method clear the textarea",
+            "itemtype": "method",
+            "name": "clear",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "Callback funtion",
+                    "type": "Function"
+                }
+            ],
+            "class": "Commands"
+        },
+        {
+            "file": "js/console.js",
+            "line": 7,
+            "description": "init shell",
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/console.js",
+            "line": 17,
+            "description": "dirty hack to scroll textarea down all the time\n\nTODO: find a better solution",
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/console.js",
+            "line": 26,
+            "description": "helper functions",
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/console.js",
+            "line": 46,
+            "description": "handle key down\nleft - go left to attend to '>'\nup - increment commandCount and display last commands\ndown - decrement commandCount and display last commands\nenter - get command string, push it in lastCommands and set commandCount, pass command to interpreter",
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/console.js",
+            "line": 60,
+            "description": "left key",
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/console.js",
+            "line": 74,
+            "description": "up key",
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/console.js",
+            "line": 88,
+            "description": "down key",
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/console.js",
+            "line": 104,
+            "description": "enter key",
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/console.js",
+            "line": 125,
+            "description": "handle keyup\nenter - insert '>' at the begin of line\nback - insert '>' when deleted",
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/console.js",
+            "line": 136,
+            "description": "enter key",
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/console.js",
+            "line": 142,
+            "description": "back key",
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/interpreter.js",
+            "line": 13,
+            "description": "help method description. The method displays the commands",
+            "itemtype": "method",
+            "name": "help",
+            "params": [
+                {
+                    "name": "cb",
+                    "description": "Callback funtion",
+                    "type": "Function"
+                }
+            ],
+            "class": "Interpreter"
+        },
+        {
+            "file": "js/interpreter.js",
+            "line": 29,
+            "description": "handleCommand method description. The method call the commands\nseperate command from args\nhandle specific command \n- call when present and is from type function",
+            "itemtype": "method",
+            "name": "handleCommand",
+            "params": [
+                {
+                    "name": "command",
+                    "description": "Command",
+                    "type": "String"
+                },
+                {
+                    "name": "cb",
+                    "description": "Callback funtion",
+                    "type": "Function"
+                }
+            ],
+            "class": "Interpreter"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\ndo fake call with sinon",
+            "line": " js/commands.js:1"
+        },
+        {
+            "message": "Missing item type\ninit shell",
+            "line": " js/console.js:7"
+        },
+        {
+            "message": "Missing item type\ndirty hack to scroll textarea down all the time\n\nTODO: find a better solution",
+            "line": " js/console.js:17"
+        },
+        {
+            "message": "Missing item type\nhelper functions",
+            "line": " js/console.js:26"
+        },
+        {
+            "message": "Missing item type\nhandle key down\nleft - go left to attend to '>'\nup - increment commandCount and display last commands\ndown - decrement commandCount and display last commands\nenter - get command string, push it in lastCommands and set commandCount, pass command to interpreter",
+            "line": " js/console.js:46"
+        },
+        {
+            "message": "Missing item type\nleft key",
+            "line": " js/console.js:60"
+        },
+        {
+            "message": "Missing item type\nup key",
+            "line": " js/console.js:74"
+        },
+        {
+            "message": "Missing item type\ndown key",
+            "line": " js/console.js:88"
+        },
+        {
+            "message": "Missing item type\nenter key",
+            "line": " js/console.js:104"
+        },
+        {
+            "message": "Missing item type\nhandle keyup\nenter - insert '>' at the begin of line\nback - insert '>' when deleted",
+            "line": " js/console.js:125"
+        },
+        {
+            "message": "Missing item type\nenter key",
+            "line": " js/console.js:136"
+        },
+        {
+            "message": "Missing item type\nback key",
+            "line": " js/console.js:142"
+        }
+    ]
+}

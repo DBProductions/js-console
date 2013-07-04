@@ -16,10 +16,22 @@ module.exports = function(grunt) {
                     specs: '<%= pkg.specDir %>/**/*.js'
                 }
             }
+        },
+        yuidoc: {
+            compile: {
+                name: '<%= pkg.name %>',
+                description: '<%= pkg.description %>',
+                version: '<%= pkg.version %>',
+                options: { 
+                    paths: '<%= pkg.srcDir %>',
+                    outdir: '<%= pkg.docsDir %>'
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-yuidoc');
     
-    grunt.registerTask('default', ['jshint']);
+    grunt.registerTask('default', ['jshint', 'yuidoc']);
 };

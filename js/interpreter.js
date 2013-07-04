@@ -1,12 +1,20 @@
 /**
- * very simple interpreter
+ * This is the description for the interpreter.
+ *
+ * @class Interpreter
+ * @constructor
+ * @param {Object} shell the textarea
+ * @param {Object} commands Commands object
  */
 function Interpreter(shell, commands) {
     "use strict";
     this.shell = shell;
     this.commands = commands;
     /**
-     * display defined commands
+     * help method description. The method displays the commands
+     *
+     * @method help
+     * @param {Function} cb Callback funtion
      */
     this.help = function help(cb) {
         var i, lines = this.shell.value;
@@ -19,9 +27,14 @@ function Interpreter(shell, commands) {
         cb();
     };
     /**
+     * handleCommand method description. The method call the commands
      * seperate command from args
      * handle specific command 
      * - call when present and is from type function
+     *
+     * @method handleCommand
+     * @param {String} command Command
+     * @param {Function} cb Callback funtion
      */
     this.handleCommand = function handleCommand(command, cb) {
         var commandArr = command.split(' ');
