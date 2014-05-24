@@ -142,9 +142,10 @@ function Interpreter(shell, commands) {
                 cb();                    
             }, args);
         } else if (typeof this.commands[command] === &#x27;function&#x27;) {
+            var that = this;
             this.commands[command](function (response) {
                 if (response) {
-                    this.shell.value += &quot;\n&quot; + response;
+                    that.shell.value += &quot;\n&quot; + response;
                 }
                 cb();                    
             }, args);    

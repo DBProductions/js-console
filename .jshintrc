@@ -19,6 +19,7 @@
         "beforeEach" : false,
         "afterEach" : false,
         "expect" : false,
+        "requestAnimationFrame" : false,
         "spyOn" : false,
         "Interpreter" : false,
         "Commands": false,

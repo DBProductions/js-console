@@ -42,7 +42,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "js/commands.js",
-            "line": 12,
+            "line": 13,
             "description": "This is the description for the commands.\nCommands are to write for your application to fit your needs.",
             "is_constructor": 1,
             "params": [
@@ -88,7 +88,7 @@
         },
         {
             "file": "js/commands.js",
-            "line": 23,
+            "line": 24,
             "description": "The method simulate rocks",
             "itemtype": "method",
             "name": "rocks",
@@ -103,7 +103,7 @@
         },
         {
             "file": "js/commands.js",
-            "line": 32,
+            "line": 33,
             "description": "The method simulate an make",
             "itemtype": "method",
             "name": "make",
@@ -123,7 +123,7 @@
         },
         {
             "file": "js/commands.js",
-            "line": 57,
+            "line": 58,
             "description": "The method simulate an timer",
             "itemtype": "method",
             "name": "timer",
@@ -138,7 +138,7 @@
         },
         {
             "file": "js/commands.js",
-            "line": 76,
+            "line": 77,
             "description": "The method simulate an installation",
             "itemtype": "method",
             "name": "install",
@@ -153,7 +153,7 @@
         },
         {
             "file": "js/commands.js",
-            "line": 90,
+            "line": 91,
             "description": "The method clear the textarea",
             "itemtype": "method",
             "name": "clear",
@@ -168,67 +168,67 @@
         },
         {
             "file": "js/console.js",
-            "line": 7,
+            "line": 8,
             "description": "init shell",
             "class": "Interpreter"
         },
         {
             "file": "js/console.js",
-            "line": 17,
-            "description": "dirty hack to scroll textarea down all the time\n\nTODO: find a better solution",
+            "line": 18,
+            "description": "hack to scroll textarea down all the time",
             "class": "Interpreter"
         },
         {
             "file": "js/console.js",
-            "line": 26,
+            "line": 34,
             "description": "helper functions",
             "class": "Interpreter"
         },
         {
             "file": "js/console.js",
-            "line": 46,
+            "line": 54,
             "description": "handle key down\nleft - go left to attend to '>'\nup - increment commandCount and display last commands\ndown - decrement commandCount and display last commands\nenter - get command string, push it in lastCommands and set commandCount, pass command to interpreter",
             "class": "Interpreter"
         },
         {
             "file": "js/console.js",
-            "line": 60,
+            "line": 68,
             "description": "left key",
             "class": "Interpreter"
         },
         {
             "file": "js/console.js",
-            "line": 74,
+            "line": 82,
             "description": "up key",
             "class": "Interpreter"
         },
         {
             "file": "js/console.js",
-            "line": 88,
+            "line": 96,
             "description": "down key",
             "class": "Interpreter"
         },
         {
             "file": "js/console.js",
-            "line": 104,
+            "line": 112,
             "description": "enter key",
             "class": "Interpreter"
         },
         {
             "file": "js/console.js",
-            "line": 125,
+            "line": 133,
             "description": "handle keyup\nenter - insert '>' at the begin of line\nback - insert '>' when deleted",
             "class": "Interpreter"
         },
         {
             "file": "js/console.js",
-            "line": 136,
+            "line": 144,
             "description": "enter key",
             "class": "Interpreter"
         },
         {
             "file": "js/console.js",
-            "line": 142,
+            "line": 150,
             "description": "back key",
             "class": "Interpreter"
         },
@@ -275,47 +275,47 @@
         },
         {
             "message": "Missing item type\ninit shell",
-            "line": " js/console.js:7"
+            "line": " js/console.js:8"
         },
         {
-            "message": "Missing item type\ndirty hack to scroll textarea down all the time\n\nTODO: find a better solution",
-            "line": " js/console.js:17"
+            "message": "Missing item type\nhack to scroll textarea down all the time",
+            "line": " js/console.js:18"
         },
         {
             "message": "Missing item type\nhelper functions",
-            "line": " js/console.js:26"
+            "line": " js/console.js:34"
         },
         {
             "message": "Missing item type\nhandle key down\nleft - go left to attend to '>'\nup - increment commandCount and display last commands\ndown - decrement commandCount and display last commands\nenter - get command string, push it in lastCommands and set commandCount, pass command to interpreter",
-            "line": " js/console.js:46"
+            "line": " js/console.js:54"
         },
         {
             "message": "Missing item type\nleft key",
-            "line": " js/console.js:60"
+            "line": " js/console.js:68"
         },
         {
             "message": "Missing item type\nup key",
-            "line": " js/console.js:74"
+            "line": " js/console.js:82"
         },
         {
             "message": "Missing item type\ndown key",
-            "line": " js/console.js:88"
+            "line": " js/console.js:96"
         },
         {
             "message": "Missing item type\nenter key",
-            "line": " js/console.js:104"
+            "line": " js/console.js:112"
         },
         {
             "message": "Missing item type\nhandle keyup\nenter - insert '>' at the begin of line\nback - insert '>' when deleted",
-            "line": " js/console.js:125"
+            "line": " js/console.js:133"
         },
         {
             "message": "Missing item type\nenter key",
-            "line": " js/console.js:136"
+            "line": " js/console.js:144"
         },
         {
             "message": "Missing item type\nback key",
-            "line": " js/console.js:142"
+            "line": " js/console.js:150"
         }
     ]
 }
