@@ -1,9 +1,12 @@
 .frame {
     position: absolute;
     left: 50%;
-    margin-left: -200;
-    margin-top: 10px;
+    margin-left: -210;
+    padding: 10px;
     width: 400px;
+    height: 400px;
+    background: #ccc;
+    border-radius: 5px;
 }
 .prompt {
     width: 400px;

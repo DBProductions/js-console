@@ -4,25 +4,33 @@ var commandCount = 0;
 var inputPossible = true;
 var commands = new Commands(shell);
 var interpreter = new Interpreter(shell, commands);
+
 /**
  * init shell
  */
 window.onload = function() {
     "use strict";
-    shell.value = "";
+    shell.value = "\n";
     shell.value = ">";
     shell.selectionStart = 1;
     shell.focus();
 };
 /**
- * dirty hack to scroll textarea down all the time
- *
- * TODO: find a better solution
- */ 
-setInterval(function() {
+ * hack to scroll textarea down all the time
+ */
+(function() {
+    var requestAnimationFrame = window.requestAnimationFrame || 
+                                window.mozRequestAnimationFrame ||
+                                window.webkitRequestAnimationFrame || 
+                                window.msRequestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;
+})();
+function setCursor() {
     "use strict";
     shell.scrollTop = shell.scrollHeight;
-}, 100);
+    requestAnimationFrame(setCursor);
+} 
+setCursor();
 /**
  * helper functions
  */
@@ -113,7 +121,7 @@ shell.addEventListener('keydown', function(e) {
             inputPossible = false;
             interpreter.handleCommand(commandStr, function() {                
                 inputPossible = true;
-                var lines = shell.value.split("\n");
+                var lines = shell.value.split("\n");                
                 if (lines[lines.length-1][0] === undefined) {
                     insertAtCursor(shell, '>');            
                 }

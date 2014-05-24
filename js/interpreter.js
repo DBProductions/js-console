@@ -52,9 +52,10 @@ function Interpreter(shell, commands) {
                 cb();                    
             }, args);
         } else if (typeof this.commands[command] === 'function') {
+            var that = this;
             this.commands[command](function (response) {
                 if (response) {
-                    this.shell.value += "\n" + response;
+                    that.shell.value += "\n" + response;
                 }
                 cb();                    
             }, args);    

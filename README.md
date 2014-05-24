@@ -1,12 +1,13 @@
 #js-console
 
-Use a HTML textarea tag to act as a console with a simple interpreter.
+Use a HTML textarea tag to act as a console with a simple interpreter.  
+Call gets simulated with Sinon could be AJAX or Websocket communication with a server.  
 
-console.js  
-defines the event handler on enter key the command get pased to the interpreter
+#####console.js  
+Defines the event handler and pass the command to the interpreter.  
 
-interpreter.js  
-hold the commands, display commands or handle command when command is passed
+#####interpreter.js  
+Hold the commands, display commands or handle command when gets called.  
 
-commands.js  
-define the commands which get executed from interpreter
+#####commands.js  
+Define the commands which get executed from the interpreter.  

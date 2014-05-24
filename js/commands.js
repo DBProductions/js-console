@@ -6,6 +6,7 @@ function doCall(arg) {
     var callback = sinon.stub();
     callback.returns(5);
     callback.withArgs('1').returns(10);
+    callback.withArgs('js').returns('js rocks');
     callback.withArgs('install').returns('start to install...finish');
     return callback(arg);
 }
@@ -93,10 +94,8 @@ function Commands(shell) {
      * @method clear
      * @param {Function} cb Callback funtion
      */
-    this.clear = function clear(cb) {
-        this.shell.value = "";
-        this.shell.value = ">";
-        this.shell.selectionStart = 1;
+    this.clear = function clear(cb) {        
+        this.shell.selectionStart = 0;
         this.shell.focus();
         cb(null);
     };
