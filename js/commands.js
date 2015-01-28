@@ -38,13 +38,13 @@ function Commands(shell) {
      * @param {Array} args Arguments
      */ 
     this.make = function make(cb, args) {
-        if(args) {
+        if (args) {
             if (args[0] === '-help' || args[0] === '-h') {
                 var helpStr = "\nmake is a test command\nit only display the given arguments and this text";
                 this.shell.value += helpStr;
             } else {
                 var content = this.shell.value;
-                for(var i = 0; i < args.length; i++) { 
+                for (var i = 0; i < args.length; i += 1) { 
                     content += "\n" + i + ": " + args[i]; 
                 }
                 content += "\nreturn: " + doCall(args[0]);
@@ -62,8 +62,8 @@ function Commands(shell) {
      * @param {Function} cb Callback funtion
      */
     this.timer = function timer(cb) {
-        var count = 0;
-        var inter = setInterval(function() {
+        var count = 0,
+            inter = setInterval(function() {
             count += 1;
             if (count === 5) {
                 clearInterval(inter);
@@ -71,7 +71,7 @@ function Commands(shell) {
                     cb(null);
                 }, 10);
             }
-            this.shell.value += "step " + (20*count) + "%\n";
+            this.shell.value += "step " + (20 * count) + "%\n";
         }, 1000);        
     };
     /**
@@ -82,7 +82,7 @@ function Commands(shell) {
      */
     this.install = function install(cb) {
         var lines = this.shell.value;
-        for(var i = 0; i < 10000; i++) { lines += "\n" + '-- loading environment step: ' + i; }
+        for (var i = 0; i < 10000; i += 1) { lines += "\n" + '-- loading environment step: ' + i; }
         this.shell.value = lines;
         setTimeout(function() {
             cb(null);

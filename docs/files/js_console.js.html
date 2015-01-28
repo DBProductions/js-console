@@ -88,13 +88,12 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
-var shell = document.querySelector(&#x27;#shell&#x27;);
-var lastCommands = [];
-var commandCount = 0;
-var inputPossible = true;
-var commands = new Commands(shell);
-var interpreter = new Interpreter(shell, commands);
-
+var shell = document.querySelector(&#x27;#shell&#x27;),
+    lastCommands = [], 
+    commandCount = 0, 
+    inputPossible = true,
+    commands = new Commands(shell),
+    interpreter = new Interpreter(shell, commands);
 /**
  * init shell
  */
@@ -130,12 +129,11 @@ function insertAtCursor(myField, myValue) {
     if (document.selection) {
         myField.focus();
         var sel = document.selection.createRange();
-        sel.text = myValue;
-    }
+        sel.text = myValue;    
     // MOZILLA and others
-    else if (myField.selectionStart || myField.selectionStart === &#x27;0&#x27;) {
-        var startPos = myField.selectionStart;
-        var endPos = myField.selectionEnd;
+    } else if (myField.selectionStart || myField.selectionStart === &#x27;0&#x27;) {
+        var startPos = myField.selectionStart,
+            endPos = myField.selectionEnd;
         myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos, myField.value.length);
     } else {
         myField.value += myValue;                
@@ -159,13 +157,13 @@ shell.addEventListener(&#x27;keydown&#x27;, function(e) {
      * left key
      */
     if (e.keyCode === 37) {
-        var completeLength = shell.value.length;
-        var currentPos = shell.selectionStart;
+        var completeLength = shell.value.length,
+            currentPos = shell.selectionStart;
         lines = shell.value.split(&quot;\n&quot;);
-        if (lines[lines.length-1] === &#x27;&gt;&#x27;) {
+        if (lines[lines.length - 1] === &#x27;&gt;&#x27;) {
             e.preventDefault();
             return false;
-        } else if((lines[lines.length-1].length - (completeLength-currentPos)) === 1) {
+        } else if ((lines[lines.length - 1].length - (completeLength - currentPos)) === 1) {
             e.preventDefault();
             return false;
         }
@@ -176,11 +174,11 @@ shell.addEventListener(&#x27;keydown&#x27;, function(e) {
         e.preventDefault(); 
         if (lastCommands[commandCount]) {
             lines = shell.value.split(&quot;\n&quot;);
-            lines[lines.length-1] = &#x27;&gt;&#x27; + lastCommands[commandCount];
+            lines[lines.length - 1] = &#x27;&gt;&#x27; + lastCommands[commandCount];
             shell.value = lines.join(&quot;\n&quot;);
         }                
         if (commandCount &gt; 0) {
-            commandCount--;
+            commandCount -= 1;
         }
         return false;
     /**
@@ -189,13 +187,13 @@ shell.addEventListener(&#x27;keydown&#x27;, function(e) {
     } else if (e.keyCode === 40) {
         e.preventDefault();
         if (commandCount &lt; lastCommands.length) {
-            commandCount++;
+            commandCount += 1;
         }
         lines = shell.value.split(&quot;\n&quot;);
         if (lastCommands[commandCount]) {
-            lines[lines.length-1] = &#x27;&gt;&#x27; + lastCommands[commandCount];	
+            lines[lines.length - 1] = &#x27;&gt;&#x27; + lastCommands[commandCount]; 
         } else {
-            lines[lines.length-1] = &#x27;&gt;&#x27;;
+            lines[lines.length - 1] = &#x27;&gt;&#x27;;
         }
         shell.value = lines.join(&quot;\n&quot;);
         return false;
@@ -204,15 +202,15 @@ shell.addEventListener(&#x27;keydown&#x27;, function(e) {
      */
     } else if (e.keyCode === 13) {
         lines = shell.value.split(&quot;\n&quot;);
-        var commandStr = lines[lines.length-1].slice(1);                
-        if (lines[lines.length-1] !== &#x27;&#x27; &amp;&amp; commandStr !== &#x27;&#x27;) {
+        var commandStr = lines[lines.length - 1].slice(1);                
+        if (lines[lines.length - 1] !== &#x27;&#x27; &amp;&amp; commandStr !== &#x27;&#x27;) {
             lastCommands.push(commandStr);
             commandCount = lastCommands.length - 1;
             inputPossible = false;
             interpreter.handleCommand(commandStr, function() {                
                 inputPossible = true;
                 var lines = shell.value.split(&quot;\n&quot;);                
-                if (lines[lines.length-1][0] === undefined) {
+                if (lines[lines.length - 1][0] === undefined) {
                     insertAtCursor(shell, &#x27;&gt;&#x27;);            
                 }
             });            
@@ -242,11 +240,12 @@ shell.addEventListener(&#x27;keyup&#x27;, function(e) {
      */
     if (e.keyCode === 8) {
         var lines = shell.value.split(&quot;\n&quot;);
-        if (lines[lines.length-1] === &#x27;&#x27;) {
+        if (lines[lines.length - 1] === &#x27;&#x27;) {
             insertAtCursor(shell, &#x27;&gt;&#x27;);
         }
     }
 }, true);
+
     </pre>
 </div>
 

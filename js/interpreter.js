@@ -18,7 +18,7 @@ function Interpreter(shell, commands) {
      */
     this.help = function help(cb) {
         var i, lines = this.shell.value;
-        for(i in this.commands) {
+        for (i in this.commands) {
             if (typeof this.commands[i] === 'function') {
                 lines += "\n" + this.commands[i].name;    
             }             
@@ -45,7 +45,7 @@ function Interpreter(shell, commands) {
         }
         
         if (command === 'help') {
-            this.help(function (response) {
+            this.help(function(response) {
                 if (response) {
                     this.shell.value += "\n" + response;
                 }
@@ -53,7 +53,7 @@ function Interpreter(shell, commands) {
             }, args);
         } else if (typeof this.commands[command] === 'function') {
             var that = this;
-            this.commands[command](function (response) {
+            this.commands[command](function(response) {
                 if (response) {
                     that.shell.value += "\n" + response;
                 }

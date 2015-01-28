@@ -9,6 +9,9 @@ module.exports = function(grunt) {
                 jshintrc: '.jshintrc'
             }
         },
+        jscs: {
+            src: "<%= pkg.srcDir %>**/*.js"
+        },
         jasmine: {
             pivotal: {
                 src: '<%= pkg.srcDir %>**/*.js',
@@ -31,7 +34,8 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-jscs-checker');
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
     
-    grunt.registerTask('default', ['jshint', 'yuidoc']);
+    grunt.registerTask('default', ['jshint', 'jscs', 'yuidoc']);
 };

@@ -1,10 +1,9 @@
-var shell = document.querySelector('#shell');
-var lastCommands = [];
-var commandCount = 0;
-var inputPossible = true;
-var commands = new Commands(shell);
-var interpreter = new Interpreter(shell, commands);
-
+var shell = document.querySelector('#shell'),
+    lastCommands = [], 
+    commandCount = 0, 
+    inputPossible = true,
+    commands = new Commands(shell),
+    interpreter = new Interpreter(shell, commands);
 /**
  * init shell
  */
@@ -40,12 +39,11 @@ function insertAtCursor(myField, myValue) {
     if (document.selection) {
         myField.focus();
         var sel = document.selection.createRange();
-        sel.text = myValue;
-    }
+        sel.text = myValue;    
     // MOZILLA and others
-    else if (myField.selectionStart || myField.selectionStart === '0') {
-        var startPos = myField.selectionStart;
-        var endPos = myField.selectionEnd;
+    } else if (myField.selectionStart || myField.selectionStart === '0') {
+        var startPos = myField.selectionStart,
+            endPos = myField.selectionEnd;
         myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos, myField.value.length);
     } else {
         myField.value += myValue;                
@@ -69,13 +67,13 @@ shell.addEventListener('keydown', function(e) {
      * left key
      */
     if (e.keyCode === 37) {
-        var completeLength = shell.value.length;
-        var currentPos = shell.selectionStart;
+        var completeLength = shell.value.length,
+            currentPos = shell.selectionStart;
         lines = shell.value.split("\n");
-        if (lines[lines.length-1] === '>') {
+        if (lines[lines.length - 1] === '>') {
             e.preventDefault();
             return false;
-        } else if((lines[lines.length-1].length - (completeLength-currentPos)) === 1) {
+        } else if ((lines[lines.length - 1].length - (completeLength - currentPos)) === 1) {
             e.preventDefault();
             return false;
         }
@@ -86,11 +84,11 @@ shell.addEventListener('keydown', function(e) {
         e.preventDefault(); 
         if (lastCommands[commandCount]) {
             lines = shell.value.split("\n");
-            lines[lines.length-1] = '>' + lastCommands[commandCount];
+            lines[lines.length - 1] = '>' + lastCommands[commandCount];
             shell.value = lines.join("\n");
         }                
         if (commandCount > 0) {
-            commandCount--;
+            commandCount -= 1;
         }
         return false;
     /**
@@ -99,13 +97,13 @@ shell.addEventListener('keydown', function(e) {
     } else if (e.keyCode === 40) {
         e.preventDefault();
         if (commandCount < lastCommands.length) {
-            commandCount++;
+            commandCount += 1;
         }
         lines = shell.value.split("\n");
         if (lastCommands[commandCount]) {
-            lines[lines.length-1] = '>' + lastCommands[commandCount];	
+            lines[lines.length - 1] = '>' + lastCommands[commandCount]; 
         } else {
-            lines[lines.length-1] = '>';
+            lines[lines.length - 1] = '>';
         }
         shell.value = lines.join("\n");
         return false;
@@ -114,15 +112,15 @@ shell.addEventListener('keydown', function(e) {
      */
     } else if (e.keyCode === 13) {
         lines = shell.value.split("\n");
-        var commandStr = lines[lines.length-1].slice(1);                
-        if (lines[lines.length-1] !== '' && commandStr !== '') {
+        var commandStr = lines[lines.length - 1].slice(1);                
+        if (lines[lines.length - 1] !== '' && commandStr !== '') {
             lastCommands.push(commandStr);
             commandCount = lastCommands.length - 1;
             inputPossible = false;
             interpreter.handleCommand(commandStr, function() {                
                 inputPossible = true;
                 var lines = shell.value.split("\n");                
-                if (lines[lines.length-1][0] === undefined) {
+                if (lines[lines.length - 1][0] === undefined) {
                     insertAtCursor(shell, '>');            
                 }
             });            
@@ -152,7 +150,7 @@ shell.addEventListener('keyup', function(e) {
      */
     if (e.keyCode === 8) {
         var lines = shell.value.split("\n");
-        if (lines[lines.length-1] === '') {
+        if (lines[lines.length - 1] === '') {
             insertAtCursor(shell, '>');
         }
     }

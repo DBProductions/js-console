@@ -11,3 +11,6 @@ Hold the commands, display commands or handle command when gets called.
 
 #####commands.js  
 Define the commands which get executed from the interpreter.  
+
+## Feedback
+Star this repo if you found it useful. Use the github issue tracker to give feedback on this repo.
