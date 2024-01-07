@@ -1,0 +1,29 @@
+{
+    "source": {
+        "include": ["js"],
+        "exclude": [],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "create_style": "nav{background: yellow}",
+    "add_scripts": "function foo(){console.log('foo')}",
+    "opts": {
+        "template": "node_modules/clean-jsdoc-theme",
+        "encoding": "utf8",             
+        "destination": "./doc/",
+        "theme_opts": {
+            "default_theme": "light",
+            "title": "rmq-topology",
+            "homepageTitle": "JSDoc"
+        }
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "default": {
+            "includeDate": false,
+            "useLongnameInNav": true,
+            "outputSourceFiles": true
+        }
+    }
+}

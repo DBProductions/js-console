@@ -1,0 +1,5 @@
+node_modules/
+doc/
+.DS_Store
+console.min.js
+console.min.js.map

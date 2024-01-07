@@ -1,54 +1,52 @@
-var shell = document.querySelector('#shell'),
-    lastCommands = [], 
-    commandCount = 0, 
-    inputPossible = true,
-    commands = new Commands(shell),
-    interpreter = new Interpreter(shell, commands);
+import { Commands } from './commands'
+import { Interpreter } from './interpreter'
+
+const shell = document.querySelector('#shell')
+const lastCommands = []
+let commandCount = 0
+let inputPossible = true
+const commands = new Commands(shell)
+const interpreter = new Interpreter(shell, commands)
+
 /**
  * init shell
  */
-window.onload = function() {
-    "use strict";
+window.onload = () => {
     shell.value = "\n";
     shell.value = ">";
     shell.selectionStart = 1;
     shell.focus();
-};
+}
+
 /**
  * hack to scroll textarea down all the time
  */
 (function() {
-    var requestAnimationFrame = window.requestAnimationFrame || 
-                                window.mozRequestAnimationFrame ||
-                                window.webkitRequestAnimationFrame || 
-                                window.msRequestAnimationFrame;
+    const requestAnimationFrame = window.requestAnimationFrame || 
+                                  window.mozRequestAnimationFrame ||
+                                  window.webkitRequestAnimationFrame || 
+                                  window.msRequestAnimationFrame;
     window.requestAnimationFrame = requestAnimationFrame;
 })();
 function setCursor() {
-    "use strict";
-    shell.scrollTop = shell.scrollHeight;
-    requestAnimationFrame(setCursor);
+    shell.scrollTop = shell.scrollHeight
+    requestAnimationFrame(setCursor)
 } 
-setCursor();
+setCursor()
+
 /**
  * helper functions
  */
 function insertAtCursor(myField, myValue) {
-    "use strict";
-    // IE support
-    if (document.selection) {
-        myField.focus();
-        var sel = document.selection.createRange();
-        sel.text = myValue;    
-    // MOZILLA and others
-    } else if (myField.selectionStart || myField.selectionStart === '0') {
-        var startPos = myField.selectionStart,
-            endPos = myField.selectionEnd;
+    if (myField.selectionStart || myField.selectionStart === '0') {
+        let startPos = myField.selectionStart
+        let endPos = myField.selectionEnd
         myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos, myField.value.length);
     } else {
         myField.value += myValue;                
     }
 }
+
 /**
  * handle key down
  * left - go left to attend to '>'
@@ -56,20 +54,16 @@ function insertAtCursor(myField, myValue) {
  * down - decrement commandCount and display last commands
  * enter - get command string, push it in lastCommands and set commandCount, pass command to interpreter
  */
-shell.addEventListener('keydown', function(e) {
-    "use strict";
+shell.addEventListener('keydown', async function(e) {
     if (!inputPossible) {
-        e.preventDefault();
-        return false;
+        e.preventDefault()
+        return false
     }
-    var lines;
-    /** 
-     * left key
-     */
-    if (e.keyCode === 37) {
-        var completeLength = shell.value.length,
-            currentPos = shell.selectionStart;
-        lines = shell.value.split("\n");
+    var lines
+    if (e.keyCode === 37) { // left key
+        const completeLength = shell.value.length
+        const currentPos = shell.selectionStart
+        lines = shell.value.split('\n')
         if (lines[lines.length - 1] === '>') {
             e.preventDefault();
             return false;
@@ -77,10 +71,7 @@ shell.addEventListener('keydown', function(e) {
             e.preventDefault();
             return false;
         }
-    /**
-     * up key
-     */
-    } else if (e.keyCode === 38) {
+    } else if (e.keyCode === 38) { // up key
         e.preventDefault(); 
         if (lastCommands[commandCount]) {
             lines = shell.value.split("\n");
@@ -91,10 +82,7 @@ shell.addEventListener('keydown', function(e) {
             commandCount -= 1;
         }
         return false;
-    /**
-     * down key
-     */
-    } else if (e.keyCode === 40) {
+    } else if (e.keyCode === 40) { // down key
         e.preventDefault();
         if (commandCount < lastCommands.length) {
             commandCount += 1;
@@ -107,51 +95,41 @@ shell.addEventListener('keydown', function(e) {
         }
         shell.value = lines.join("\n");
         return false;
-    /**
-     * enter key
-     */
-    } else if (e.keyCode === 13) {
+    } else if (e.keyCode === 13) { // enter key
         lines = shell.value.split("\n");
         var commandStr = lines[lines.length - 1].slice(1);                
         if (lines[lines.length - 1] !== '' && commandStr !== '') {
             lastCommands.push(commandStr);
             commandCount = lastCommands.length - 1;
             inputPossible = false;
-            interpreter.handleCommand(commandStr, function() {                
-                inputPossible = true;
-                var lines = shell.value.split("\n");                
-                if (lines[lines.length - 1][0] === undefined) {
-                    insertAtCursor(shell, '>');            
-                }
-            });            
+            interpreter.handleCommand(commandStr)
+            inputPossible = true;
+            var lines = shell.value.split("\n");                
+            if (lines[lines.length - 1][0] === undefined) {
+                insertAtCursor(shell, '>');            
+            }           
         }
         return false;
     }
 }, true);
+
 /**
  * handle keyup
  * enter - insert '>' at the begin of line
  * back - insert '>' when deleted
  */
 shell.addEventListener('keyup', function(e) {
-    "use strict";
     if (!inputPossible) {
-        e.preventDefault();
-        return false;
+        e.preventDefault()
+        return false
     }
-    /** 
-     * enter key
-     */
-    if (e.keyCode === 13) {
-        insertAtCursor(shell, '>');
+    if (e.keyCode === 13) { // enter key
+        insertAtCursor(shell, '>')
     }
-    /** 
-     * back key
-     */
-    if (e.keyCode === 8) {
-        var lines = shell.value.split("\n");
+    if (e.keyCode === 8) { // back key
+        const lines = shell.value.split('\n')
         if (lines[lines.length - 1] === '') {
-            insertAtCursor(shell, '>');
+            insertAtCursor(shell, '>')
         }
     }
-}, true);
+}, true)

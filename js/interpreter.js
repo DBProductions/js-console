@@ -7,7 +7,6 @@
  * @param {Object} commands Commands object
  */
 function Interpreter(shell, commands) {
-    "use strict";
     this.shell = shell;
     this.commands = commands;
     /**
@@ -16,13 +15,13 @@ function Interpreter(shell, commands) {
      * @method help
      * @param {Function} cb Callback funtion
      */
-    this.help = function help(cb) {
-        var i, lines = this.shell.value;
-        for (i in this.commands) {
-            if (typeof this.commands[i] === 'function') {
+    this.help = async function help(cb) { 
+        let lines = this.shell.value;        
+        for (let i in this.commands) {
+            if (this.commands[i].name) {
                 lines += "\n" + this.commands[i].name;    
-            }             
-        }                
+            }
+        }
         this.shell.value = lines;
         cb();
     };
@@ -36,10 +35,10 @@ function Interpreter(shell, commands) {
      * @param {String} command Command
      * @param {Function} cb Callback funtion
      */
-    this.handleCommand = function handleCommand(command, cb) {
-        var commandArr = command.split(' ');
+    this.handleCommand = function handleCommand(command) {
+        const commandArr = command.split(' ');
         command = commandArr[0];
-        var args = null;
+        let args = null;
         if (commandArr.length > 1) {
             args = commandArr.slice(1); 
         }
@@ -48,8 +47,7 @@ function Interpreter(shell, commands) {
             this.help(function(response) {
                 if (response) {
                     this.shell.value += "\n" + response;
-                }
-                cb();                    
+                }             
             }, args);
         } else if (typeof this.commands[command] === 'function') {
             var that = this;
@@ -57,11 +55,13 @@ function Interpreter(shell, commands) {
                 if (response) {
                     that.shell.value += "\n" + response;
                 }
-                cb();                    
             }, args);    
         } else {
             this.shell.value += "\n'" + command + "' not found, type help to list commands";
-            cb();
         }
     };
+}
+
+export {
+    Interpreter
 }

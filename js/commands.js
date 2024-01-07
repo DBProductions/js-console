@@ -1,9 +1,8 @@
 /**
  * do fake call with sinon
  */
-function doCall(arg) {
-    "use strict";
-    var callback = sinon.stub();
+const doCall = (arg) => {
+    const callback = sinon.stub();
     callback.returns(5);
     callback.withArgs('1').returns(10);
     callback.withArgs('js').returns('js rocks');
@@ -19,7 +18,6 @@ function doCall(arg) {
  * @param {Object} shell the textarea
  */
 function Commands(shell) {
-    "use strict";
     this.shell = shell;
     /**
      * The method simulate rocks
@@ -99,4 +97,8 @@ function Commands(shell) {
         this.shell.focus();
         cb(null);
     };
+}
+
+export {
+    Commands
 }
